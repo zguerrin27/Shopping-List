@@ -17,7 +17,6 @@ router.post('/', (req, res) => {
   const newItem = new Item({
     name: req.body.name
   });
-
   // save the new item to DB, the promise returns the item and we want it to come back as JSON
   newItem.save().then(item => res.json(item))
 })

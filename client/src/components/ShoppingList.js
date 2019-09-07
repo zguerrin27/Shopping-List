@@ -13,8 +13,8 @@ class ShoppingList extends Component {
     super(props);
     this.state = {
       items: [{
-        _id: 'xyz',
-        name: 'abc',
+        _id: '',
+        name: '',
         isCompleted: false
       }],
       newItemName: ''
@@ -44,6 +44,7 @@ class ShoppingList extends Component {
     
     axios.post('/api/items', newItem).then(res => {
       this.setState({ items: [...this.state.items, newItem], newItemName: ''  })
+      this.getAllItems();
     })
     .catch(function(err){
       console.log(err)
@@ -71,7 +72,7 @@ class ShoppingList extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
+        <ul style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 
             <Item 
                   key={ index } 

@@ -38,12 +38,13 @@ class ShoppingList extends Component {
     this.setState({ newItemName: e.target.value })
   }
 
-  handleSubmit(e) {
+  addItem(e) {
     e.preventDefault();
     if (!this.state.newItemName) { return }
     const newItem = { name: this.state.newItemName, isCompleted: false };
+    console.log("FROM DAAA ADDITEM CONTROLLER IN SHOPPING LIST")
+    console.log(newItem)
  
-    
     axios.post('/api/items', newItem).then(res => {
       this.setState({ items: [...this.state.items, newItem], newItemName: ''  })
       this.getAllItems();
@@ -62,6 +63,21 @@ class ShoppingList extends Component {
     })  
   }
 
+  onEditClick(item){   
+    console.log("FROM THE SHOPPING LIST")      
+    console.log(item.name) 
+    const EditItem = {name: item.name}
+
+    axios.put('/api/items', EditItem).then(res => {
+      this.setState({ items: [...this.state.items, EditItem], newItemName: ''  })
+      this.getAllItems();
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+  }
+
+
   toggleComplete(index, _id) {
     const items = this.state.items.slice();
     const item = items[index];
@@ -69,20 +85,13 @@ class ShoppingList extends Component {
     this.setState({ items: items });
   }
 
-  // updateItem(item) {
 
-  //   console.log(item._id)
-
-  //   axios.put(`/api/items/${_id}`).then(res => {
-  //     console.log(this.state.items)
-  //   })
-  // }
 
 
   render() {
     return (
       <div className="App">
-        {/* <ItemModal handleSubmit={() => this.handleSubmit()} /> */}
+
         <ul style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 
             <Item 
@@ -91,11 +100,16 @@ class ShoppingList extends Component {
                   isCompleted={ item.isCompleted } 
                   toggleComplete={ () => this.toggleComplete(index, item._id) } 
                   onDeleteClick={ () => this.onDeleteClick(item._id) } 
+                  onEditClick={ () => this.onEditClick(item) } 
               />
+              
           )}
+          { this.state.items.map( (item) => 
+            <ItemModal onEditClick={(item) => this.onEditClick(item)} /> 
+          ) }
         </ul>
 
-        <form onSubmit={ (e) => this.handleSubmit(e) } >
+        <form onSubmit={ (e) => this.addItem(e) } >
            <input type="text" value={ this.state.newItemName } onChange={ (e) => this.handleChange(e) } />
            <input type="submit" />
         </form>

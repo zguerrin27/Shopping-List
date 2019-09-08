@@ -15,8 +15,7 @@ import { Model } from 'mongoose';
 class ItemModal extends Component {
   state = {
     modal: false,
-    name: '',
-    isCompleted: false
+    name: ''
   }
 
   toggle = () => {
@@ -31,11 +30,12 @@ class ItemModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();   // stops form from default behavior 
-    const modalItem = {
-      name: this.state.name,
-      isCompleted: this.state.isCompleted
+    const newItemName = {
+      name: this.state.name
     }
-    this.props.handleSubmit(modalItem);   // Add new item via the addItem action that you grab from props
+    console.log("FROM DA ITEM MODAL")
+    console.log(newItemName)
+    this.props.onEditClick(newItemName);   // Add new item via the addItem action that you grab from props
     this.toggle();  // close the modal
   }
 
@@ -44,26 +44,24 @@ class ItemModal extends Component {
       <div>
         <Button
           color="primary"
-          style={{marginBottom: '1rem'}}
           onClick={this.toggle}
-          size="lg"
-          block
-        >Add Item</Button>
+          size="sm"
+        >Edit Item</Button>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Add Item To List</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={(name) => this.onSubmit(name)}>
               <FormGroup>
                 <Label for="item">Item</Label>
                 <Input 
                   type="text"
                   name="name"
                   id="item"
-                  placeholder="Add Item"
+                  placeholder="New Name"
                   onChange={this.onChange}
                   ></Input>
-                  <Button color="dark" style={{ marginTop: "2rem" }} block >Add Item</Button>
+                  <Button color="dark" style={{ marginTop: "2rem" }} block >Save</Button>
               </FormGroup>
             </Form>
           </ModalBody>

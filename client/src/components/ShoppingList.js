@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import Item from './Item';
+import ItemModal from './ItemModal';
 
 class ShoppingList extends Component {
 
@@ -41,6 +42,7 @@ class ShoppingList extends Component {
     e.preventDefault();
     if (!this.state.newItemName) { return }
     const newItem = { name: this.state.newItemName, isCompleted: false };
+ 
     
     axios.post('/api/items', newItem).then(res => {
       this.setState({ items: [...this.state.items, newItem], newItemName: ''  })
@@ -52,7 +54,6 @@ class ShoppingList extends Component {
   }
 
   onDeleteClick(_id){              
-    console.log(_id)
     axios.delete(`/api/items/${_id}`).then(res => {
       this.getAllItems()
     })
@@ -61,24 +62,34 @@ class ShoppingList extends Component {
     })  
   }
 
-  toggleComplete(index) {
+  toggleComplete(index, _id) {
     const items = this.state.items.slice();
     const item = items[index];
     item.isCompleted = item.isCompleted ? false : true;
     this.setState({ items: items });
   }
 
+  // updateItem(item) {
+
+  //   console.log(item._id)
+
+  //   axios.put(`/api/items/${_id}`).then(res => {
+  //     console.log(this.state.items)
+  //   })
+  // }
+
 
   render() {
     return (
       <div className="App">
+        {/* <ItemModal handleSubmit={() => this.handleSubmit()} /> */}
         <ul style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 
             <Item 
                   key={ index } 
                   name={ item.name } 
                   isCompleted={ item.isCompleted } 
-                  toggleComplete={ () => this.toggleComplete(index) } 
+                  toggleComplete={ () => this.toggleComplete(index, item._id) } 
                   onDeleteClick={ () => this.onDeleteClick(item._id) } 
               />
           )}

@@ -15,10 +15,18 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // construct a new item with Item Model
   const newItem = new Item({
-    name: req.body.name
+    name: req.body.name,
+    isCompleted: req.body.isCompleted
   });
   // save the new item to DB, the promise returns the item and we want it to come back as JSON
   newItem.save().then(item => res.json(item))
+})
+
+// route is PUT /api/items/update
+router.put('/:id', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id)
+  .then(item => item.updateOne().then( () => res.json({success: true})))
+  .catch(err =>  res.status(404).json({success:false}))
 })
 
 // route is DELETE /api/items/:id, It gets all items, if I was adding auth it would be Public

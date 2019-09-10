@@ -9,13 +9,15 @@ import {
   Label,
   Input
 } from 'reactstrap';
-import { Model } from 'mongoose';
+// import axios from 'axios';
 
 
 class ItemModal extends Component {
   state = {
     modal: false,
-    name: ''
+    name: '',
+    _id: this.props.id,
+    isCompleted: this.props.isCompleted
   }
 
   toggle = () => {
@@ -25,18 +27,23 @@ class ItemModal extends Component {
   }
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })  // this adds the e.t.val to the e.targe.name feature of the input in the formgroup
+    this.setState({ name: e.target.value, _id: this.props.id })  // this adds the e.t.val to the e.targe.name feature of the input in the formgroup
   }
 
   onSubmit = (e) => {
     e.preventDefault();   // stops form from default behavior 
-    const newItemName = {
-      name: this.state.name
+    const newItem = {
+      name: this.state.name,
+      _id: this.state._id,
+      isCompleted: this.state.isCompleted
     }
-    console.log("FROM DA ITEM MODAL")
-    console.log(newItemName)
-    this.props.onEditClick(newItemName);   // Add new item via the addItem action that you grab from props
-    this.toggle();  // close the modal
+    // console.log(newItem)
+
+    // axios.put('/api/items/:id/update', {
+    //   newItemName
+    // })
+    this.props.onEditClick(newItem);   
+    this.toggle();  
   }
 
   render(){
@@ -51,7 +58,7 @@ class ItemModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>
-            <Form onSubmit={(name) => this.onSubmit(name)}>
+            <Form onSubmit={(e) => this.onSubmit(e)}>
               <FormGroup>
                 <Label for="item">Item</Label>
                 <Input 

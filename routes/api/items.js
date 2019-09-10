@@ -22,11 +22,16 @@ router.post('/', (req, res) => {
   newItem.save().then(item => res.json(item))
 })
 
-// route is PUT /api/items/update
+// route is PUT /api/items/:id
+
 router.put('/:id', (req, res) => {
-  Item.findByIdAndUpdate(req.params.id)
-  .then(item => item.updateOne().then( () => res.json({success: true})))
-  .catch(err =>  res.status(404).json({success:false}))
+  console.log(req.body)
+  console.log(req.body._id)
+  console.log(req.body.name)
+  console.log(req.body.isCompleted)
+  Item.findByIdAndUpdate(req.body._id, req.body)
+  .then( () => res.json({sucess: true}))
+  .catch( err => res.status(404).json({success: false}))
 })
 
 // route is DELETE /api/items/:id, It gets all items, if I was adding auth it would be Public

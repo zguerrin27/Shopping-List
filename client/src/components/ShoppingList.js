@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {
-  ListGroup,
-  ListGroupItem,
-  Button
-} from 'reactstrap';
+// import {
+//   ListGroup,
+//   ListGroupItem,
+//   Button
+// } from 'reactstrap';
 import axios from 'axios';
 import Item from './Item';
 import ItemModal from './ItemModal';
@@ -16,7 +16,7 @@ class ShoppingList extends Component {
       items: [{
         _id: '',
         name: '',
-        isCompleted: false
+        isCompleted: ''
       }],
       newItemName: ''
     };
@@ -42,6 +42,7 @@ class ShoppingList extends Component {
     e.preventDefault();
     if (!this.state.newItemName) { return }
     const newItem = { name: this.state.newItemName, isCompleted: false };
+
     console.log("FROM DAAA ADDITEM CONTROLLER IN SHOPPING LIST")
     console.log(newItem)
  
@@ -63,18 +64,27 @@ class ShoppingList extends Component {
     })  
   }
 
-  onEditClick(item){   
-    console.log("FROM THE SHOPPING LIST")      
-    console.log(item.name) 
-    const EditItem = {name: item.name}
+  onEditClick(item, _id){   
 
-    axios.put('/api/items', EditItem).then(res => {
-      this.setState({ items: [...this.state.items, EditItem], newItemName: ''  })
+   
+   
+  
+    console.log(item)
+
+
+    axios.put(`/api/items/${_id}`, {
+       _id: item._id,
+       name: item.name,
+       isCompleted: item.isCompleted
+    })
+    .then(res => {                                 
       this.getAllItems();
     })
     .catch(function(err){
       console.log(err)
     })
+    
+
   }
 
 
@@ -97,15 +107,20 @@ class ShoppingList extends Component {
             <Item 
                   key={ index } 
                   name={ item.name } 
+                  id={item._id}
                   isCompleted={ item.isCompleted } 
                   toggleComplete={ () => this.toggleComplete(index, item._id) } 
                   onDeleteClick={ () => this.onDeleteClick(item._id) } 
-                  onEditClick={ () => this.onEditClick(item) } 
               />
               
           )}
-          { this.state.items.map( (item) => 
-            <ItemModal onEditClick={(item) => this.onEditClick(item)} /> 
+          { this.state.items.map( (item, index) => 
+            <ItemModal 
+            key={ index } 
+            onEditClick={(item) => this.onEditClick(item, item._id)}
+            id={item._id}
+            isCompleted={item.isCompleted}
+            /> 
           ) }
         </ul>
 

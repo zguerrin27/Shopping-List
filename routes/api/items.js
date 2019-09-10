@@ -25,10 +25,6 @@ router.post('/', (req, res) => {
 // route is PUT /api/items/:id
 
 router.put('/:id', (req, res) => {
-  console.log(req.body)
-  console.log(req.body._id)
-  console.log(req.body.name)
-  console.log(req.body.isCompleted)
   Item.findByIdAndUpdate(req.body._id, req.body)
   .then( () => res.json({sucess: true}))
   .catch( err => res.status(404).json({success: false}))

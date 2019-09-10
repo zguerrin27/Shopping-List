@@ -42,9 +42,6 @@ class ShoppingList extends Component {
     e.preventDefault();
     if (!this.state.newItemName) { return }
     const newItem = { name: this.state.newItemName, isCompleted: false };
-
-    console.log("FROM DAAA ADDITEM CONTROLLER IN SHOPPING LIST")
-    console.log(newItem)
  
     axios.post('/api/items', newItem).then(res => {
       this.setState({ items: [...this.state.items, newItem], newItemName: ''  })
@@ -65,13 +62,6 @@ class ShoppingList extends Component {
   }
 
   onEditClick(item, _id){   
-
-   
-   
-  
-    console.log(item)
-
-
     axios.put(`/api/items/${_id}`, {
        _id: item._id,
        name: item.name,
@@ -83,8 +73,6 @@ class ShoppingList extends Component {
     .catch(function(err){
       console.log(err)
     })
-    
-
   }
 
 

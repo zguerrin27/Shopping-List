@@ -76,11 +76,23 @@ class ShoppingList extends Component {
   }
 
 
-  toggleComplete(index, _id) {
+  toggleComplete(index, item) {
     const items = this.state.items.slice();
-    const item = items[index];
-    item.isCompleted = item.isCompleted ? false : true;
-    this.setState({ items: items });
+    const completedItem = items[index];
+    completedItem.isCompleted = completedItem.isCompleted ? false : true;
+    // this.setState({ items: items }); just for local..
+    const _id = item._id;
+    axios.put(`/api/items/${_id}`, {
+      _id: item._id,
+      name: item.name,
+      isCompleted: item.isCompleted
+    })
+    .then(res => {                                 
+      this.getAllItems();
+    })
+    .catch(function(err){
+      console.log(err)
+    })
   }
 
 
@@ -90,16 +102,18 @@ class ShoppingList extends Component {
     return (
       <div className="App">
 
-        <ul style={{listStyleType: "none"}}>
+        <div style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 
             <Item 
                   key={ index } 
                   name={ item.name } 
                   id={item._id}
                   isCompleted={ item.isCompleted } 
-                  toggleComplete={ () => this.toggleComplete(index, item._id) } 
+                  toggleComplete={ () => this.toggleComplete(index, item) } 
                   onDeleteClick={ () => this.onDeleteClick(item._id) } 
+                  
               />
+              
               
           )}
           { this.state.items.map( (item, index) => 
@@ -110,7 +124,8 @@ class ShoppingList extends Component {
             isCompleted={item.isCompleted}
             /> 
           ) }
-        </ul>
+        </div>
+
 
         <form onSubmit={ (e) => this.addItem(e) } >
            <input type="text" value={ this.state.newItemName } onChange={ (e) => this.handleChange(e) } />

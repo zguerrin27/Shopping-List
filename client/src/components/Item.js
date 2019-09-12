@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-// import ItemModal from './ItemModal';
+import {
+  Button}
+  from 'reactstrap';
+  import ItemModal from './ItemModal';
 
 class Item extends Component {
 
     render() {
         return (
-          <li  >
+          <div >
             <input type="checkbox" checked={ this.props.isCompleted } onChange={ this.props.toggleComplete } style={{marginRight: "2rem"}} />
             <span style={{marginRight: "2rem"}} >{ this.props.name }</span>
-            <button onClick={this.props.onDeleteClick}  > Delete </button>
-          </li>
+            <Button size="sm" onClick={this.props.onDeleteClick}> Delete </Button>
+            {/* <ItemModal /> */}
+          </div>
         );
       }
 }

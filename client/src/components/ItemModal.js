@@ -55,6 +55,8 @@ class ItemModal extends Component {
           size="sm"
         >Edit Item</Button>
 
+        
+
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>

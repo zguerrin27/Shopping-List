@@ -80,7 +80,7 @@ class ShoppingList extends Component {
     const items = this.state.items.slice();
     const completedItem = items[index];
     completedItem.isCompleted = completedItem.isCompleted ? false : true;
-    // this.setState({ items: items }); just for local..
+    // this.setState({ items: items }); just for local
     const _id = item._id;
     axios.put(`/api/items/${_id}`, {
       _id: item._id,

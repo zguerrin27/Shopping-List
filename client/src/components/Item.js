@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Button}
   from 'reactstrap';
-  import ItemModal from './ItemModal';
+  // import ItemModal from './ItemModal';
 
 class Item extends Component {
 

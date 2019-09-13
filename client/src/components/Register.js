@@ -12,15 +12,9 @@ class Register extends Component {
   };
 }
 
-handleUsername(e) {
-  this.setState({ username: e.target.value })
-}
-handleEmail(e) {
-  this.setState({ email: e.target.value })
-}
-handlePassword(e) {
-  this.setState({ password: e.target.value })
-}
+  handleChange(e){
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
 
   onSubmit(e){
@@ -34,6 +28,9 @@ handlePassword(e) {
 
     Axios.post('/api/users', newUser).then(res => {
       console.log("CREATED USER")
+      console.log(res)
+      localStorage.setItem('token', res.data.token)  
+      window.location.reload()
     })
     .catch(function(err){
       console.log(err)
@@ -42,16 +39,15 @@ handlePassword(e) {
   }
 
 
-
-
   render() {
     return (
       <div>
+        <h3>Register as first time user</h3>
         <form onSubmit={ (e) => this.onSubmit(e) } >
-        <input type="text" value={ this.state.username } placeholder={"Enter New Username"} onChange={ (e) => this.handleUsername(e) } />
-        <input type="email" value={ this.state.email } placeholder={"Enter New Email"} onChange={ (e) => this.handleEmail(e) } />
-        <input type="password" value={ this.state.password } placeholder={"Enter New Password"} onChange={ (e) => this.handlePassword(e) } />
-        <input type="submit" />
+          <input type="text"  name="username" value={ this.state.username } placeholder={"Enter New Username"} onChange={ (e) => this.handleChange(e) } />
+          <input type="email" name="email"  value={ this.state.email } placeholder={"Enter New Email"} onChange={ (e) => this.handleChange(e) } />
+          <input type="password" name="password"  value={ this.state.password } placeholder={"Enter New Password"} onChange={ (e) => this.handleChange(e) } />
+          <input type="submit" />
         </form>
       </div>
     );

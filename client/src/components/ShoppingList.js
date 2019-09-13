@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Item from './Item';
 import ItemModal from './ItemModal';
+// import AppNavbar from './AppNavBar';
 
 class ShoppingList extends Component {
 
@@ -18,7 +19,8 @@ class ShoppingList extends Component {
         name: '',
         isCompleted: ''
       }],
-      newItemName: ''
+      newItemName: '',
+      token: localStorage.getItem('token')
     };
   }
 
@@ -42,8 +44,18 @@ class ShoppingList extends Component {
     e.preventDefault();
     if (!this.state.newItemName) { return }
     const newItem = { name: this.state.newItemName, isCompleted: false };
- 
-    axios.post('/api/items', newItem).then(res => {
+
+    const token = this.state.token;
+    const config = {
+      headers: {
+        "Content-type": "application/json"
+      }
+    }
+    if(token){
+      config.headers['x-auth-token'] = token;
+    }
+
+    axios.post('/api/items', newItem, config).then(res => {
       this.setState({ items: [...this.state.items, newItem], newItemName: ''  })
       this.getAllItems();
     })
@@ -52,8 +64,19 @@ class ShoppingList extends Component {
     })
   }
 
-  onDeleteClick(_id){              
-    axios.delete(`/api/items/${_id}`).then(res => {
+  onDeleteClick(_id){      
+
+    const token = this.state.token;
+    const config = {
+      headers: {
+        "Content-type": "application/json"
+      }
+    }
+    if(token){
+      config.headers['x-auth-token'] = token;
+    }
+    
+    axios.delete(`/api/items/${_id}`, config).then(res => {
       this.getAllItems()
     })
     .catch(err => {
@@ -62,11 +85,22 @@ class ShoppingList extends Component {
   }
 
   onEditClick(item, _id){   
+
+    const token = this.state.token;
+    const config = {
+      headers: {
+        "Content-type": "application/json"
+      }
+    }
+    if(token){
+      config.headers['x-auth-token'] = token;
+    }
+
     axios.put(`/api/items/${_id}`, {
        _id: item._id,
        name: item.name,
        isCompleted: item.isCompleted
-    })
+    }, config )                          // token passed in here
     .then(res => {                                 
       this.getAllItems();
     })
@@ -82,11 +116,20 @@ class ShoppingList extends Component {
     completedItem.isCompleted = completedItem.isCompleted ? false : true;
     // this.setState({ items: items }); just for local
     const _id = item._id;
+    const token = this.state.token;
+    const config = {
+      headers: {
+        "Content-type": "application/json"
+      }
+    }
+    if(token){
+      config.headers['x-auth-token'] = token;
+    }
     axios.put(`/api/items/${_id}`, {
       _id: item._id,
       name: item.name,
-      isCompleted: item.isCompleted
-    })
+      isCompleted: item.isCompleted 
+    }, config )                          // token passed in here
     .then(res => {                                 
       this.getAllItems();
     })
@@ -101,6 +144,8 @@ class ShoppingList extends Component {
   render() {
     return (
       <div className="App">
+
+      {/* <AppNavbar /> */}
 
         <div style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 

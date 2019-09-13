@@ -19,22 +19,16 @@ class AppNavbar extends Component {
     }
   }
 
-// this.toggle = this.toggle.bind(this); This is normally in the state. 
-// lifestyle methods come with the this keyword included..custom methods like the ones below do not. thats why you need this binded.
-// A work around is to user an arrow function. 
-// with an arrow function we also dont technically need a contructor function for state.. it could just be this.state = {isOpen:false}
- 
-  // toggle(){      // how it would be normally
-  // toggle action
-  // }
-
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
 
-    // style={{maxWidth: "75%", margin: "auto"}}
+  Logout(){
+    localStorage.removeItem('token')
+  }
+
   render() {
     return (
       <div >
@@ -50,8 +44,8 @@ class AppNavbar extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/">
-                    Login
+                  <NavLink href="/" onClick={this.Logout} >
+                    Log Out
                   </NavLink>
                 </NavItem>
               </Nav>

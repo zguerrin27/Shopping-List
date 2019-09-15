@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import {
-//   ListGroup,
-//   ListGroupItem,
-//   Button
-// } from 'reactstrap';
+import {
+  ListGroup,
+  ListGroupItem,
+  Button
+} from 'reactstrap';
 import axios from 'axios';
 import Item from './Item';
 import ItemModal from './ItemModal';
@@ -22,6 +22,8 @@ class ShoppingList extends Component {
       newItemName: '',
       token: localStorage.getItem('token')
     };
+    this.onEditClick = this.onEditClick.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   componentDidMount(){
@@ -143,11 +145,37 @@ class ShoppingList extends Component {
 
   render() {
     return (
+
+
+      // <ListGroup>
+
+      //   {this.state.items.map( (item, index) => )}
+
+
+      // </ListGroup>
+
+
       <div className="App">
 
-      {/* <AppNavbar /> */}
 
-        <div style={{listStyleType: "none"}}>
+
+        <ListGroup>
+          { this.state.items.map( (item, index) => 
+          <ListGroupItem>
+            <Item 
+                  key={ index } 
+                  name={ item.name } 
+                  id={item._id}
+                  isCompleted={ item.isCompleted } 
+                  toggleComplete={ () => this.toggleComplete(index, item) } 
+                  onDeleteClick={ () => this.onDeleteClick(item._id) } 
+                  onEditClick={(item) => this.onEditClick(item, item._id)}
+              />
+          </ListGroupItem>
+          )}
+        </ListGroup>
+
+        {/* <div style={{listStyleType: "none"}}>
           { this.state.items.map( (item, index) => 
             <Item 
                   key={ index } 
@@ -156,20 +184,21 @@ class ShoppingList extends Component {
                   isCompleted={ item.isCompleted } 
                   toggleComplete={ () => this.toggleComplete(index, item) } 
                   onDeleteClick={ () => this.onDeleteClick(item._id) } 
-                  
+                  onEditClick={(item) => this.onEditClick(item, item._id)}
               />
-              
-              
           )}
-          { this.state.items.map( (item, index) => 
+        </div> */}
+
+        {/* { this.state.items.map( (item, index) => 
             <ItemModal 
             key={ index } 
             onEditClick={(item) => this.onEditClick(item, item._id)}
             id={item._id}
             isCompleted={item.isCompleted}
             /> 
-          ) }
-        </div>
+          ) } */}
+
+
 
 
         <form onSubmit={ (e) => this.addItem(e) } >

@@ -40,18 +40,18 @@ onSubmit(e){
 
 
   render() {
-  return (
-    <div>
-      {/* <AppNavbar /> */}
-      <h3>Login to use ShoppingList</h3> 
-      <form onSubmit={ (e) => this.onSubmit(e) } >
-        <input type="email"  name="email" value={ this.state.email } placeholder={"Enter User Email"} onChange={ (e) => this.handleChange(e) } />
-        <input type="password" name="password"  value={ this.state.password } placeholder={"Enter User Password"} onChange={ (e) => this.handleChange(e) } />
-        <input type="submit" />
-      </form>
-    </div>
-  );
-}
+    return (
+      <div>
+        {/* <AppNavbar /> */}
+        <h3>Login to use ShoppingList</h3> 
+        <form onSubmit={ (e) => this.onSubmit(e) } >
+          <input type="email"  name="email" value={ this.state.email } placeholder={"Enter User Email"} onChange={ (e) => this.handleChange(e) } />
+          <input type="password" name="password"  value={ this.state.password } placeholder={"Enter User Password"} onChange={ (e) => this.handleChange(e) } />
+          <input type="submit" />
+        </form>
+      </div>
+    );
+  }
 
 }
 

@@ -87,6 +87,7 @@ class ShoppingList extends Component {
   }
 
   onEditClick(item, _id){   
+    console.log(item)
 
     const token = this.state.token;
     const config = {
@@ -101,7 +102,7 @@ class ShoppingList extends Component {
     axios.put(`/api/items/${_id}`, {
        _id: item._id,
        name: item.name,
-       isCompleted: item.isCompleted
+      //  isCompleted: item.isCompleted
     }, config )                          // token passed in here
     .then(res => {                                 
       this.getAllItems();
@@ -144,15 +145,6 @@ class ShoppingList extends Component {
 
   render() {
     return (
-
-
-      // <ListGroup>
-
-      //   {this.state.items.map( (item, index) => )}
-
-
-      // </ListGroup>
-
 
       <div className="App" style={{maxWidth: '80%', marginLeft: '10%'}}>
 

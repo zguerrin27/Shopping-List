@@ -29,8 +29,10 @@ router.post('/', auth, (req, res) => {
 router.put('/:id', auth, (req, res) => {
   Item.findByIdAndUpdate(req.body._id, req.body)
   .then( () => res.json({sucess: true}))
-  .catch( err => res.status(404).json({success: false}))
+  .catch( err => console.log(err))
 })
+
+//.catch( err => res.status(404).json({success: false}))
 
 // route is DELETE /api/items/:id, It gets all items, if I was adding auth it would be Private..Its now private because of auth middleware
 router.delete('/:id', auth, (req, res) => {

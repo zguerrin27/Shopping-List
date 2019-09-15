@@ -50,7 +50,7 @@ class Item extends Component {
                    style={{marginRight: "3rem"}} />
 
             <span style={{marginRight: "3rem"}} >{ this.props.name }</span>
-            
+
             <Button style={{marginRight: '.5rem'}}
                     color="danger" 
                     size="sm" 

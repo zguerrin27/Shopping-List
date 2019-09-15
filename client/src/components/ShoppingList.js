@@ -116,7 +116,6 @@ class ShoppingList extends Component {
     const items = this.state.items.slice();
     const completedItem = items[index];
     completedItem.isCompleted = completedItem.isCompleted ? false : true;
-    // this.setState({ items: items }); just for local
     const _id = item._id;
     const token = this.state.token;
     const config = {
@@ -159,9 +158,9 @@ class ShoppingList extends Component {
 
 
 
-        <ListGroup>
+        <ListGroup style={{maxWidth: '75', marginBottom: '1rem', textAlign: 'center'}}>
           { this.state.items.map( (item, index) => 
-          <ListGroupItem>
+          <ListGroupItem >
             <Item 
                   key={ index } 
                   name={ item.name } 
@@ -197,9 +196,6 @@ class ShoppingList extends Component {
             isCompleted={item.isCompleted}
             /> 
           ) } */}
-
-
-
 
         <form onSubmit={ (e) => this.addItem(e) } >
            <input type="text" value={ this.state.newItemName } onChange={ (e) => this.handleChange(e) } />

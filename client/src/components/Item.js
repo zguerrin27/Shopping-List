@@ -44,10 +44,20 @@ class Item extends Component {
     render() {
         return (
           <div >
-            <input type="checkbox" checked={ this.props.isCompleted } onChange={ this.props.toggleComplete } style={{marginRight: "2rem"}} />
-            <span style={{marginRight: "2rem"}} >{ this.props.name }</span>
-            <Button color="danger" size="sm" onClick={this.props.onDeleteClick}> Delete </Button>
-            <Button color="primary" size="sm" onClick={this.toggle} > Edit Item</Button>
+            <input type="checkbox" 
+                   checked={ this.props.isCompleted } 
+                   onChange={ this.props.toggleComplete } 
+                   style={{marginRight: "3rem"}} />
+
+            <span style={{marginRight: "3rem"}} >{ this.props.name }</span>
+            
+            <Button style={{marginRight: '.5rem'}}
+                    color="danger" 
+                    size="sm" 
+                    onClick={this.props.onDeleteClick} > Delete </Button>
+            <Button style={{}}
+                    color="primary" 
+                    size="sm" onClick={this.toggle} > Edit Item</Button>
 
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>

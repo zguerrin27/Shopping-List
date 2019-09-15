@@ -154,13 +154,13 @@ class ShoppingList extends Component {
       // </ListGroup>
 
 
-      <div className="App">
+      <div className="App" style={{maxWidth: '80%', marginLeft: '10%'}}>
 
 
 
-        <ListGroup style={{maxWidth: '75', marginBottom: '1rem', textAlign: 'center'}}>
+        <ListGroup >
           { this.state.items.map( (item, index) => 
-          <ListGroupItem >
+          <ListGroupItem style={{marginBottom: '.03rem', textAlign: 'center'}}>
             <Item 
                   key={ index } 
                   name={ item.name } 

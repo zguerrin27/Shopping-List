@@ -31,15 +31,18 @@ https://murmuring-wave-35705.herokuapp.com/
 
 - Node.js 
 - Express.js
-- Body-Parser - when req is made to server..this is used to read the body of the http request
+- Express-Router
+- Body-Parser 
 - Concurrently - to run both react server and node server at the same time - npm run dev script
 - MongoDB - Database
 - Mongoose - Object Document Mapper for DB 
-- Nodemon - npm i -D nodemon - saves it as a DevDependency 
-- Axios for http requests fromreact to node backend which pushes to mongoDB
-- B-cryptjs - for hashing plain text passwords
-- Json Web Tokens - for handling auth sessions
+- Axios for http requests from React to node backend which pushes to mongoDB
+- B-cryptjs - for hashing plain text passwords to store in DB
+- Custom Middleware for Auth
+- Json Web Tokens - for handling auth 
 - config.js - for using default.json as a way to store config variables
+- ReactStrap and Bootstrap for Styling
+
 
 
 

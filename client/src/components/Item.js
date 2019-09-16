@@ -43,10 +43,12 @@ class Item extends Component {
     render() {
         return (
           <div >
-            <input type="checkbox" 
+            <label for="purchased" > Purchased: </label>
+            <input id="purchased"
+                   type="checkbox" 
                    checked={ this.props.isCompleted } 
                    onChange={ this.props.toggleComplete } 
-                   style={{marginRight: "3rem"}} />
+                   style={{marginRight: "3rem", marginLeft: "1rem"}} />
 
             <span style={{marginRight: "3rem"}} >{ this.props.name }</span>
 

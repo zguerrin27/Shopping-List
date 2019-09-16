@@ -1,6 +1,8 @@
 # Shopping-List
 A Full-Stack, shopping list web app made for Bloc certificate. Made with MERN stack.
 
+This app allows Users to register for, then sign into a shopping list. Once in the list you can Create Read Update and Destroy items. You can also mark them as purchased with a input check box. If you click the edit item button it will open a modal that allows you to enter the new text for the item. Each time you make an update to an item, it is sent to the mongodb database and saves the changes. In the future I will add more features like real-time updating with websockets, as well as seperate list's.
+
 
 For this assignment I was asked to create a shared grocery list web application. It is the first time that I have ever 
 written a full-stack app, and throughout the process I learned a great deal. For my technology choices I went with Node and 
@@ -23,7 +25,7 @@ events when your API end points are hit. Then you broadcast those events so that
 was going to use Jest and a testing utility package called Enzyme. I chose those because they seemed to be two of the most
 popular options for testing React and Node apps. The next big thing I would add is error handling. Right now if someone enters
 information incorectly in say the log in or register field, it will not flash an error message etc. I would also display
-success messages when a user is created successfully etc. The last thing I would change would be the styling and routes to pages etc. Right now I have a single page for Users to Register or Login...I would seperate those with ReactRouter. I would also add a strike through or light text effect to completed purchases. I would also take time to make the over-all styling of the project more appealing.
+success messages when a user is created successfully etc. The last thing I would change would be the styling and routes to pages etc. Right now I have a single page for Users to Register or Login...I would seperate those with ReactRouter. I would also add a strike through or light text effect to completed purchases. I would also take time to make the over-all styling of the project more appealing. 
 
 
 https://murmuring-wave-35705.herokuapp.com/
@@ -31,15 +33,18 @@ https://murmuring-wave-35705.herokuapp.com/
 
 - Node.js 
 - Express.js
-- Body-Parser - when req is made to server..this is used to read the body of the http request
+- Express-Router
+- Body-Parser 
 - Concurrently - to run both react server and node server at the same time - npm run dev script
 - MongoDB - Database
 - Mongoose - Object Document Mapper for DB 
-- Nodemon - npm i -D nodemon - saves it as a DevDependency 
-- Axios for http requests fromreact to node backend which pushes to mongoDB
-- B-cryptjs - for hashing plain text passwords
-- Json Web Tokens - for handling auth sessions
+- Axios for http requests from React to node backend which pushes to mongoDB
+- B-cryptjs - for hashing plain text passwords to store in DB
+- Custom Middleware for Auth
+- Json Web Tokens - for handling auth 
 - config.js - for using default.json as a way to store config variables
+- ReactStrap and Bootstrap for Styling
+
 
 
 

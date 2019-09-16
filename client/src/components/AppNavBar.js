@@ -10,7 +10,6 @@ import {
   Container
 } from 'reactstrap';
 
-
 class AppNavbar extends Component {
   constructor(props){          
     super(props);
@@ -39,7 +38,7 @@ class AppNavbar extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="https://github.com/zguerrin27">
+                  <NavLink href="https://github.com/zguerrin27/Shopping-List">
                     GitHub
                   </NavLink>
                 </NavItem>

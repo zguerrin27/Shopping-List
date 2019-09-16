@@ -35,7 +35,6 @@ class Item extends Component {
       _id: this.state._id,
       isCompleted: this.state.isCompleted
     }
-
     this.props.onEditClick(newItem);   
     this.toggle();  
   }
@@ -57,7 +56,7 @@ class Item extends Component {
                     onClick={this.props.onDeleteClick} > Delete </Button>
             <Button style={{}}
                     color="primary" 
-                    size="sm" onClick={this.toggle} > Edit Item</Button>
+                    size="sm" onClick={this.toggle} > Edit Item </Button>
 
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>

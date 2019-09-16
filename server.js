@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Bring in mongo atlas and config DB... doing the ().mongoURI brings in just that module.
-// const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;  // EDIT - removed this folder and added to JSON config file.
 
 const db = config.get('mongoURI');
 

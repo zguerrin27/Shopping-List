@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    console.log(this.state.token)
+    // console.log(this.state.token)
   }
 
 
@@ -32,13 +32,16 @@ class App extends Component {
       //     <Route path="/Register" component={Register} />
       //   </Switch>
       // </BrowserRouter>
+      
       <div className="App" style={{textAlign: "center"}} >
+
         <AppNavbar />
         {this.state.token ? <ShoppingList /> : null}
         <br></br>
         {this.state.token ? null : <Login /> }
         <br></br>
         {this.state.token ? null : <Register /> }
+        
       </div>
     );
   }

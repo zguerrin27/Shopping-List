@@ -27,7 +27,7 @@ router.post('/', auth, (req, res) => {
 // route is PUT /api/items/:id     updates an item, if I was adding auth it would be Private..Its now private because of auth middleware
 
 router.put('/:id', auth, (req, res) => {
-  Item.findByIdAndUpdate(req.body._id, req.body)
+  Item.findByIdAndUpdate(req.body._id, req.body)  // provide ID to find item and pass in new object in body
   .then( () => res.json({sucess: true}))
   .catch( err => console.log(err))
 })

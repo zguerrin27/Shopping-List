@@ -82,5 +82,4 @@ class ItemModal extends Component {
 }
 
 
-
 export default ItemModal;

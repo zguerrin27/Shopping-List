@@ -33,6 +33,7 @@ https://murmuring-wave-35705.herokuapp.com/
 
 - Node.js 
 - Express.js
+- JSON API
 - Express-Router
 - Body-Parser 
 - Concurrently - to run both react server and node server at the same time - npm run dev script

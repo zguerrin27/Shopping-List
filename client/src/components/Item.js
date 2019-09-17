@@ -62,7 +62,7 @@ class Item extends Component {
 
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
+              <ModalHeader toggle={this.toggle}> Edit Item </ModalHeader>
               <ModalBody>
                 <Form onSubmit={(e) => this.onSubmit(e)}>
                   <FormGroup>

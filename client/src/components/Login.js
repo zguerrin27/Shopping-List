@@ -20,12 +20,10 @@ handleChange(e) {
 
 onSubmit(e){
   e.preventDefault();
-
   const User = {
     email: this.state.email,
     password: this.state.password,
   }
-
   Axios.post('/api/users/auth', User).then(res => {
     console.log("USER SIGNED IN ")
     console.log(res)
@@ -35,7 +33,6 @@ onSubmit(e){
   .catch(function(err){
     console.log(err)
   })
-
 }
 
 

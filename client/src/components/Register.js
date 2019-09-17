@@ -16,16 +16,13 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-
   onSubmit(e){
     e.preventDefault();
-
     const newUser = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
     }
-
     Axios.post('/api/users', newUser).then(res => {
       console.log("CREATED USER")
       console.log(res)
@@ -35,9 +32,7 @@ class Register extends Component {
     .catch(function(err){
       console.log(err)
     })
-
   }
-
 
   render() {
     return (

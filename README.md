@@ -1,7 +1,7 @@
 # Shopping-List
 A Full-Stack, shopping list web app made for Bloc certificate. Made with MERN stack.
 
-This app allows Users to register for, then sign into a shopping list. Once in the list you can Create Read Update and Destroy items. You can also mark them as purchased with a input check box. If you click the edit item button it will open a modal that allows you to enter the new text for the item. Each time you make an update to an item, it is sent to the mongodb database and saves the changes. In the future I will add more features like real-time updating with websockets, as well as seperate list's.
+This app allows Users to register for, then sign into a shopping list. Once in the list you can Create Read Update and Destroy items. You can also mark them as purchased with a input check box. If you click the edit item button, it will open a modal that allows you to enter the new text for the item. Each time you make an update to an item, it is sent to the mongodb database and saves the changes. In the future I will add more features like real-time updating with websockets, as well as seperate list's.
 
 
 For this assignment I was asked to create a shared grocery list web application. It is the first time that I have ever 
